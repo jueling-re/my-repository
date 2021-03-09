@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springcloud.provider_one.dao.UserDao">
+    <resultMap id="BaseResultMap" type="com.springcloud.provider_one.model.User">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+    </resultMap>
+
+    <parameterMap id="User" type="com.springcloud.provider_one.model.User"/>
+
+    <insert id="createUser" parameterMap="User">
+        insert into `user`(name) value (#{name})
+    </insert>
+
+    <select id="findAllUser" resultType="com.springcloud.provider_one.model.User">
+        select id,`name` from `user`
+    </select>
+
+    <update id="updateUser" parameterMap="User">
+        update `user` set `name` = #{name} where id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="integer">
+        delete from `user` where id = #{id}
+    </delete>
+</mapper>
